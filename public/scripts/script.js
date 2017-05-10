@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('WhereMyPeeps', '$http', function($http) {
+myApp.controller('WhereMyPeeps', function($http) {
   console.log('angulaaar');
 
   var vm = this;
@@ -33,7 +33,7 @@ myApp.controller('WhereMyPeeps', '$http', function($http) {
         method: 'GET',
         url: '/getRecords',
       }).then(function(response) {
-        vm.allTheRecords = response.dat;
+        vm.allTheRecords = response.data;
         console.log(vm.allTheRecords);
       });
   };

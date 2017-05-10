@@ -8,9 +8,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({exstended: true}));
 app.use(express.static('public'));
 
+var port = process.env.PORT || 8080;
+
 // 27017 is default mongo port
 mongoose.connect('localhost:27017/meanie');
-var ourSchema = new mongoose.Schema({
+var ourSchema = mongoose.Schema({
   name: String,
   location: String
 });
@@ -40,6 +42,6 @@ app.post('/testPost', function(req, res) {
   newRecord.save();
 });
 
-app.listen(8080, 'localhost', function(req, res) {
+app.listen(port, function() {
   console.log('listening on 8080');
 });
