@@ -45,3 +45,9 @@ app.post('/testPost', function(req, res) {
 app.listen(port, function() {
   console.log('listening on 8080');
 });
+
+app.delete('/deleteRecords/:id', function(req, res){
+  ourModels.remove({_id : req.params.id}).then(function(){
+    res.send(200);
+  });
+});

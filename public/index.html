@@ -5,6 +5,7 @@
     <title>MEANie</title>
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="scripts/script.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="vendors/bootstrap.min.css">
   </head>
   <body ng-app="myApp">
     <img src='images/meanie_3.jpg' width=800 height=400 />
@@ -15,6 +16,15 @@
       <input type="text" value="" ng-model="wmp.locationIn" placeholder="Location">
       <button ng-click='wmp.addRecord()'>Add</button>
       <button ng-click='wmp.getRecords()'>Read</button>
+      <div class='container row'>
+        <div ng-repeat='record in wmp.allTheRecords' class='col-sm-3'>
+          <h3>{{ record.name }}</h3>
+          <p>
+            {{ record.location }}
+          </p>
+          <button ng-click='wmp.deleteRecords(record._id)'>delete</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
