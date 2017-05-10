@@ -2,8 +2,12 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
 var mongoose = require('mongoose');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({exstended: true}));
+app.use(express.static('public'));
+
 // 27017 is default mongo port
 mongoose.connect('localhost:27017/meanie');
 var ourSchema = new mongoose.Schema({
@@ -23,10 +27,6 @@ app.get('/getRecords', function(req, res) {
   });
 });
 
-app.listen(8080, 'localhost', function(req, res) {
-  console.log('listening on 8080');
-});
-
 app.post('/testPost', function(req, res) {
   console.log('req.body.name: ' + req.body.name);
   // retrieved the req.body
@@ -40,4 +40,6 @@ app.post('/testPost', function(req, res) {
   newRecord.save();
 });
 
-app.use(express.static('public'));
+app.listen(8080, 'localhost', function(req, res) {
+  console.log('listening on 8080');
+});
