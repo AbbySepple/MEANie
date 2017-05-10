@@ -11,14 +11,14 @@ var ourSchema = new mongoose.Schema({
   location: String
 });
 
-var ourModel = mongoose.model('ourModel', ourSchema);
+var ourModels = mongoose.model('ourModels', ourSchema);
 app.get('/', function(req, res) {
   res.sendFile(path.resolve('public/index.html'));
 });
 
 app.get('/getRecords', function(req, res) {
   // get and send back all the things
-  ourModel.find().then(function(data) {
+  ourModels.find().then(function(data) {
     res.send(data);
   });
 });
@@ -36,7 +36,7 @@ app.post('/testPost', function(req, res) {
     location: req.body.location
   };
   // create new record
-  var newRecord = ourModel(recordToAdd);
+  var newRecord = ourModels(recordToAdd);
   newRecord.save();
 });
 
